@@ -1,19 +1,18 @@
-# prompt: deploy the model with stremlit
-
-# Install streamlit
-#!pip install streamlit
-
-# Save the following code as app.py
+# Install necessary packages before running the app (do not include this in the code):
+# pip install streamlit scikit-learn pandas numpy
 
 import streamlit as st
 import pandas as pd
 import pickle
 
-# Load the trained model
-#filename = 'lasso_model.sav'
-filename =r"lasso_model.sav"
+# Load the trained model (make sure the file path is correct)
+filename = r"lasso_model.sav"
 
-loaded_model = pickle.load(open(filename, 'rb'))
+# Try loading the model
+try:
+    loaded_model = pickle.load(open(filename, 'rb'))
+except FileNotFoundError:
+    st.error("Model file not found. Please check the file path.")
 
 # Create a title for your app
 st.title("Boston Housing Price Prediction")
@@ -53,11 +52,9 @@ if st.button("Predict Price"):
     })
 
     # Make the prediction
-    prediction = loaded_model.predict(input_data)
-
-    # Display the prediction
-    st.write("Predicted Price:", prediction[0])
-
-
-# Run the app
-#!streamlit run app.py & npx localtunnel --port 8501
+    try:
+        prediction = loaded_model.predict(input_data)
+        # Display the prediction
+        st.write("Predicted Price:", prediction[0])
+    except Exception as e:
+        st.error(f"An error occurred during prediction: {str(e)}")
