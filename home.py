@@ -10,8 +10,9 @@ import pandas as pd
 import pickle
 
 # Load the trained model
-#filename = 'lasso_model.sav'
-filename =r"C:\Users\Janak\Downloads\lasso_model.sav"
+filename = 'lasso_model.sav'
+#filename =r"C:\Users\Janak\Downloads\lasso_model.sav"
+
 loaded_model = pickle.load(open(filename, 'rb'))
 
 # Create a title for your app
