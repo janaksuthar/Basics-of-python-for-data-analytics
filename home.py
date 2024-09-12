@@ -1,5 +1,5 @@
 # Install necessary packages before running the app (do not include this in the code):
-# pip install streamlit scikit-learn pandas numpy
+pip install streamlit scikit-learn pandas numpy
 
 import streamlit as st
 import pandas as pd
